@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>JosephEvent Décor | Décoration d'événements à Bukavu</title>
+<meta name="description" content="Décoration de mariages et d'événements à Bukavu, Goma et Uvira : arches florales, backdrops, mariage traditionnel. Devis sur WhatsApp.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"JosephEvent Décor","telephone":"+243975390397","email":"safarimarumejoseph@jmail.com","address":{"@type":"PostalAddress","addressLocality":"Bukavu","addressRegion":"Sud-Kivu","addressCountry":"CD"},"areaServed":["Bukavu","Goma","Uvira"],"description":"Décoration de mariages et d'événements."}
+</script>
+<style>
+  :root{--wine:#5a0f1f;--wine-d:#3b0914;--gold:#c9a24a;--gold-d:#a8842f;--ivory:#fbf6ee;--rose:#f1dcd6;--text:#2a1a1d;--muted:#6f5b5e;--line:#e8dccf;--wa:#25d366}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:var(--ivory);line-height:1.65}
+  img,svg{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.15}
+  .wrap{width:min(1120px,100% - 36px);margin-inline:auto}
+  .demo-bar{background:#171012;color:#f3d9a0;font-size:12.5px;text-align:center;padding:7px 12px}
+
+  header{position:sticky;top:0;z-index:30;background:rgba(59,9,20,.97);backdrop-filter:blur(8px)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .brand{font-family:"Cormorant Garamond",serif;font-size:1.55rem;font-weight:700;color:#fff;letter-spacing:.3px}
+  .brand{white-space:nowrap}
+  .brand b{color:var(--gold)}
+  .nav ul{display:flex;gap:26px;list-style:none;color:#f3e5d6;font-size:.92rem}
+  .nav ul a:hover{color:var(--gold)}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:12px 22px;font-weight:600;font-size:.95rem;border:0;cursor:pointer;transition:.2s}
+  .btn svg{width:20px;height:20px;fill:currentColor}
+  .btn-wa{background:var(--wa);color:#06361a}
+  .btn-wa:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.55);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .nav .btn{padding:9px 16px;font-size:.88rem}
+
+  .hero{position:relative;color:#fff;background:linear-gradient(135deg,var(--wine-d),var(--wine) 55%,#8a2336);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:url(photos/photo-1.jpg) center/cover no-repeat;opacity:.38}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(59,9,20,.92),rgba(59,9,20,.55) 60%,rgba(59,9,20,.25))}
+  .hero .wrap{position:relative;z-index:2;padding:96px 0 104px;max-width:760px;margin-left:max(18px,calc((100% - 1120px)/2))}
+  .eyebrow{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:.78rem;font-weight:600;margin-bottom:16px}
+  .hero h1{font-size:clamp(2.5rem,6.2vw,4.4rem);margin-bottom:18px}
+  .hero p{font-size:1.08rem;color:#f2e2d4;max-width:560px;margin-bottom:30px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+
+  .strip{background:var(--gold);color:#2b1a00}
+  .strip .wrap{display:flex;justify-content:space-around;gap:10px;flex-wrap:wrap;padding:14px 0;font-weight:600;font-size:.92rem;text-align:center}
+
+  section{padding:78px 0}
+  .head{text-align:center;max-width:620px;margin:0 auto 40px}
+  .head .eyebrow{color:var(--gold-d)}
+  .head h2{font-size:clamp(2rem,4.4vw,2.9rem);color:var(--wine)}
+  .head p{color:var(--muted);margin-top:10px}
+
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 24px;transition:.25s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(90,15,31,.12)}
+  .ico{width:52px;height:52px;border-radius:14px;background:var(--rose);display:grid;place-items:center;margin-bottom:16px;color:var(--wine)}
+  .ico svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{font-size:1.4rem;color:var(--wine);margin-bottom:6px}
+  .card p{font-size:.93rem;color:var(--muted)}
+
+  .gallery{background:#fff}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .tile{position:relative;aspect-ratio:1/1.1;border-radius:14px;overflow:hidden;cursor:zoom-in;background:linear-gradient(140deg,var(--wine),#a23a4d);display:flex;align-items:flex-end}
+  .tile:nth-child(3n+2){background:linear-gradient(140deg,#6a3a8a,#c27ab0)}
+  .tile:nth-child(4n){background:linear-gradient(140deg,#1d4e89,#5fa8d3)}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .tile:hover img{transform:scale(1.06)}
+  .tile span{position:relative;z-index:2;color:#fff;font-size:.82rem;font-weight:500;padding:26px 12px 10px;width:100%;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+  .more{text-align:center;margin-top:28px}
+  .btn-line{border:1.5px solid var(--wine);color:var(--wine)}
+  .btn-line:hover{background:var(--wine);color:#fff}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;counter-reset:s}
+  .step{position:relative;padding:8px 0 0 66px}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;background:var(--wine);color:var(--gold);display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:1.7rem;font-weight:700}
+  .step h3{font-size:1.35rem;color:var(--wine)}
+  .step p{color:var(--muted);font-size:.93rem}
+
+  .contact{background:linear-gradient(135deg,var(--wine-d),var(--wine));color:#fff}
+  .contact .head h2{color:#fff}.contact .head p{color:#f0d9cf}.contact .head .eyebrow{color:var(--gold)}
+  .cwrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .info{display:grid;gap:14px}
+  .info a,.info div{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 18px}
+  .info svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.7;flex:none;stroke-linecap:round;stroke-linejoin:round}
+  .info small{display:block;color:#e7cfc3;font-size:.78rem}
+  form{background:#fff;color:var(--text);border-radius:18px;padding:26px;display:grid;gap:14px}
+  form h3{color:var(--wine);font-size:1.5rem}
+  label{font-size:.82rem;font-weight:600;color:var(--muted);display:grid;gap:5px}
+  input,select{font:inherit;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--ivory)}
+  input:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+  form .btn{justify-content:center}
+
+  footer{background:#171012;color:#cdb9a8;text-align:center;padding:26px 16px;font-size:.84rem}
+  footer a{color:var(--gold)}
+  .float{position:fixed;right:16px;bottom:16px;z-index:40;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3)}
+  .float svg{width:32px;height:32px;fill:#fff}
+
+  dialog{border:0;border-radius:14px;padding:0;max-width:min(92vw,900px);background:#000}
+  dialog::backdrop{background:rgba(0,0,0,.8)}
+  dialog img{max-height:86vh;width:auto;margin:auto}
+  dialog button{position:absolute;top:8px;right:8px;background:#fff;border:0;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer}
+
+  @media(max-width:860px){
+    .nav ul{display:none}
+    .brand{font-size:1.25rem}
+    .nav .btn{padding:8px 13px;font-size:.82rem}
+    .strip .wrap{padding-bottom:20px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .cwrap{grid-template-columns:1fr}
+    section{padding:58px 0}
+    .hero .wrap{padding:70px 0 78px}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.88 9.88M20.5 3.49A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.3.16 11.84c0 2.09.55 4.13 1.59 5.93L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.3 11.89-11.84 0-3.17-1.24-6.16-3.44-8.4"/></symbol></svg>
+
+<div class="demo-bar">Aperçu de démonstration préparé pour JosephEvent Décor · non publié</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">Joseph<b>Event</b> Décor</a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#comment">Comment ça marche</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-wa" href="https://wa.me/243975390397?text=Bonjour%20JosephEvent%20D%C3%A9cor%2C%20je%20voudrais%20un%20devis." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>WhatsApp</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Décoration d'événements · Bukavu</div>
+    <h1>Nous transformons votre espace avec élégance</h1>
+    <p>Mariages, mariages traditionnels, arches florales et décors sur mesure. Créativité, professionnalisme, et un budget respecté.</p>
+    <div class="cta">
+      <a class="btn btn-wa" href="https://wa.me/243975390397?text=Bonjour%20JosephEvent%20D%C3%A9cor%2C%20je%20voudrais%20un%20devis." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Demander un devis sur WhatsApp</a>
+      <a class="btn btn-ghost" href="#realisations">Voir nos réalisations</a>
+    </div>
+  </div>
+</div>
+
+<div class="strip"><div class="wrap">
+  <span>Bukavu · Goma · Uvira</span><span>Toujours ouvert</span><span>Devis sur WhatsApp</span>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <div class="head"><div class="eyebrow">Nos services</div><h2>Un décor à la hauteur de votre événement</h2><p>Du simple backdrop à la salle entièrement décorée, nous nous adaptons à votre idée et à votre budget.</p></div>
+  <div class="services">
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M12 8V4M10 5h4"/></svg></div><h3>Mariage</h3><p>Décor de la salle, table des mariés, entrée et espace photo pour une journée inoubliable.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V11a8 8 0 0 1 16 0v10"/><path d="M8 21v-9a4 4 0 0 1 8 0v9"/></svg></div><h3>Arches &amp; backdrops</h3><p>Arches florales, panneaux et fonds de scène pour vos photos et votre cérémonie.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c2 3 2 5 0 7-2-2-2-4 0-7Z"/><path d="M5 21h14M7 21l1-6h8l1 6M8 15c0-2 2-3 4-3s4 1 4 3"/></svg></div><h3>Mariage traditionnel</h3><p>Une décoration qui respecte les couleurs et les symboles de votre tradition.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.5L12 14.6 7.1 17.2 8 11.7 4 7.8 9.6 7z"/></svg></div><h3>Autres événements</h3><p>Anniversaires, fêtes et réceptions : dites-nous ce que vous imaginez.</p></div>
+  </div>
+</div></section>
+
+<section class="gallery" id="realisations"><div class="wrap">
+  <div class="head"><div class="eyebrow">Réalisations</div><h2>Quelques-uns de nos décors</h2><p>Touchez une photo pour l'agrandir.</p></div>
+  <div class="grid">
+    <figure class="tile"><img src="photos/photo-1.jpg" alt="Décor de mariage avec rideaux rouges et fleurs" onerror="this.remove()"><span>Décor de mariage</span></figure>
+    <figure class="tile"><img src="photos/photo-2.jpg" alt="Backdrop floral" onerror="this.remove()"><span>Backdrop floral</span></figure>
+    <figure class="tile"><img src="photos/photo-3.jpg" alt="Arche florale pour photos de couple" onerror="this.remove()"><span>Arche &amp; photos de couple</span></figure>
+    <figure class="tile"><img src="photos/photo-4.jpg" alt="Décor en extérieur" onerror="this.remove()"><span>Décor en extérieur</span></figure>
+    <figure class="tile"><img src="photos/photo-5.jpg" alt="Panneaux décorés en bleu et fleurs" onerror="this.remove()"><span>Panneaux &amp; fleurs</span></figure>
+    <figure class="tile"><img src="photos/photo-6.jpg" alt="Mariage traditionnel" onerror="this.remove()"><span>Mariage traditionnel</span></figure>
+    <figure class="tile"><img src="photos/photo-7.jpg" alt="Entrée décorée" onerror="this.remove()"><span>Entrée décorée</span></figure>
+    <figure class="tile"><img src="photos/photo-8.jpg" alt="Table des mariés" onerror="this.remove()"><span>Table des mariés</span></figure>
+  </div>
+  <div class="more"><a class="btn btn-line" href="https://www.facebook.com/profile.php?id=100069074573924" target="_blank" rel="noopener">Voir plus sur Facebook</a></div>
+</div></section>
+
+<section id="comment"><div class="wrap">
+  <div class="head"><div class="eyebrow">Comment ça marche</div><h2>Simple, du premier message au jour J</h2></div>
+  <div class="steps">
+    <div class="step"><h3>Vous nous écrivez</h3><p>Envoyez-nous un message sur WhatsApp avec la date, le lieu et le type d'événement.</p></div>
+    <div class="step"><h3>On vous propose un devis</h3><p>Nous discutons de vos idées, de vos couleurs et de votre budget, puis vous recevez une proposition claire.</p></div>
+    <div class="step"><h3>Nous installons, vous profitez</h3><p>Le jour J, notre équipe installe le décor pour que vous n'ayez à vous occuper de rien.</p></div>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <div class="head"><div class="eyebrow">Contact</div><h2>Parlons de votre événement</h2><p>Réponse par WhatsApp. Remplissez le formulaire et votre message s'écrit tout seul.</p></div>
+  <div class="cwrap">
+    <div class="info">
+      <a href="tel:+243975390397"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><small>Téléphone</small>+243 975 390 397</span></a>
+      <a href="https://wa.me/243975390397" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12Z"/></svg><span><small>WhatsApp</small>+243 975 390 397</span></a>
+      <a href="mailto:safarimarumejoseph@jmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><small>E-mail</small>safarimarumejoseph@jmail.com</span></a>
+      <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><small>Zones desservies</small>Bukavu · Goma · Uvira</span></div>
+    </div>
+    <form id="f">
+      <h3>Demander un devis</h3>
+      <label>Votre nom<input id="n" placeholder="Ex. Marie" required></label>
+      <label>Type d'événement<select id="t"><option>Mariage</option><option>Mariage traditionnel</option><option>Anniversaire</option><option>Autre événement</option></select></label>
+      <label>Date prévue<input id="d" placeholder="Ex. 20 décembre"></label>
+      <label>Lieu<input id="l" placeholder="Ex. Bukavu, salle ..."></label>
+      <button class="btn btn-wa" type="submit"><svg><use href="#wa"/></svg>Envoyer sur WhatsApp</button>
+    </form>
+  </div>
+</div></section>
+
+<footer>© JosephEvent Décor · Bukavu, RD Congo · <a href="https://www.facebook.com/profile.php?id=100069074573924" target="_blank" rel="noopener">Facebook</a></footer>
+
+<a class="float" href="https://wa.me/243975390397" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#wa"/></svg></a>
+<dialog id="lb"><button aria-label="Fermer">×</button><img alt=""></dialog>
+
+<script>
+  document.getElementById('f').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(i){return document.getElementById(i).value.trim()};
+    var m='Bonjour JosephEvent Décor, je suis '+v('n')+'. Je voudrais un devis pour : '+v('t')+
+      (v('d')?', le '+v('d'):'')+(v('l')?', à '+v('l'):'')+'.';
+    window.open('https://wa.me/243975390397?text='+encodeURIComponent(m),'_blank');
+  });
+  var lb=document.getElementById('lb');
+  document.querySelectorAll('.tile').forEach(function(t){
+    t.addEventListener('click',function(){
+      var im=t.querySelector('img'); if(!im) return;
+      lb.querySelector('img').src=im.src; lb.querySelector('img').alt=im.alt; lb.showModal();
+    });
+  });
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.tagName==='BUTTON') lb.close(); });
+</script>
+</body>
+</html>
