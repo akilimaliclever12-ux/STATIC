@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAKALA VERT — Des déchets à la braise</title>
+<meta name="description" content="Makala Vert transforme les déchets organiques de Bukavu en briquettes de cuisson. Site de démonstration (entreprise fictive).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">MAKALA<b>VERT</b></a>
+  <nav>
+    <a href="#top">Le processus</a>
+    <a href="#impact">Impact</a>
+    <a href="#produits">Produits</a>
+    <a href="#contact">Commander</a>
+  </nav>
+  <a class="btn" href="https://wa.me/25762239480" target="_blank" rel="noopener">WhatsApp</a>
+</header>
+
+<!-- STAGE : tout le processus, piloté par le scroll -->
+<section class="stage" id="top">
+  <div class="sticky" id="sticky">
+    <div class="bg" id="bg"></div>
+    <canvas id="cv"></canvas>
+    <div class="vignette"></div>
+    <div class="loader" id="loader"><span id="pct">0</span>%</div>
+
+    <div class="scene" data-bg="#0f2a1d">
+      <p class="kicker">Du déchet à la braise · 01</p>
+      <h1>Ce que Bukavu jette,<br><em>nous le transformons.</em></h1>
+      <p>Épluchures, coques et résidus de marché : chaque jour, des tonnes de déchets organiques sont collectées.</p>
+    </div>
+    <div class="scene" data-bg="#1a0d05">
+      <p class="kicker">02 · Carbonisation</p>
+      <h2>Le feu <em>sans air.</em></h2>
+      <p>Séchés puis chauffés dans un four fermé, les déchets deviennent un charbon fin et propre.</p>
+    </div>
+    <div class="scene" data-bg="#0b0b0c">
+      <p class="kicker">03 · Broyage</p>
+      <h2>Une poudre <em>noire et fine.</em></h2>
+      <p>Le charbon est broyé jusqu'à obtenir une poudre régulière, prête à être façonnée.</p>
+    </div>
+    <div class="scene" data-bg="#0a1a2f">
+      <p class="kicker">04 · Mélange</p>
+      <h2>Un liant <em>100 % naturel.</em></h2>
+      <p>De l'amidon de manioc et un peu d'eau lient la poudre. Aucun produit chimique.</p>
+    </div>
+    <div class="scene" data-bg="#3a2c14">
+      <p class="kicker">05 · Pressage &amp; séchage</p>
+      <h2>Chaque briquette, <em>une forme.</em></h2>
+      <p>La presse donne sa forme à la briquette, qui sèche ensuite deux jours à l'air libre.</p>
+    </div>
+    <div class="scene" data-bg="#4a1e08">
+      <p class="kicker">06 · Dans votre cuisine</p>
+      <h2>Une flamme <em>longue et douce.</em></h2>
+      <p>Peu de fumée, une cuisson plus longue, et pas un arbre abattu.</p>
+      <a class="btn" href="#produits">Voir les produits</a>
+    </div>
+
+    <ol class="steps" id="steps"><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+    <p class="count" id="count">01 / 06</p>
+  </div>
+</section>
+
+<section class="impact" id="impact">
+  <p class="kicker">Notre impact</p>
+  <h2 class="title">Moins de coupe d'arbres,<br><em>plus de cuisine propre.</em></h2>
+  <div class="nums">
+    <div><b data-count="120" data-suffix=" t">0</b><span>de déchets valorisés par an</span></div>
+    <div><b data-count="9000">0</b><span>arbres épargnés (estimation)</span></div>
+    <div><b data-count="1500">0</b><span>ménages équipés</span></div>
+    <div><b data-count="30" data-suffix="%">0</b><span>de fumée en moins</span></div>
+  </div>
+  <p class="demo">Chiffres fictifs, pour la démonstration.</p>
+</section>
+
+<section class="compare">
+  <div class="col">
+    <h3>Charbon de bois</h3>
+    <ul><li>Abat des arbres</li><li>Beaucoup de fumée</li><li>Brûle vite</li><li>Prix instable</li></ul>
+  </div>
+  <div class="col win">
+    <h3>Briquette Makala Vert</h3>
+    <ul><li>Fabriquée à partir de déchets</li><li>Peu de fumée</li><li>Cuisson plus longue</li><li>Prix stable</li></ul>
+  </div>
+</section>
+
+<section class="products" id="produits">
+  <p class="kicker">Produits</p>
+  <h2 class="title">Choisissez votre sac</h2>
+  <div class="cards">
+    <article><div class="sack s5">5 kg</div><h3>Foyer</h3><p>Pour un petit ménage, environ deux semaines.</p></article>
+    <article><div class="sack s10">10 kg</div><h3>Famille</h3><p>Le format le plus choisi, environ un mois.</p></article>
+    <article><div class="sack s25">25 kg</div><h3>Pro</h3><p>Restaurants, écoles, vendeurs de rue.</p></article>
+  </div>
+  <p class="demo">Prix à définir avec l'entreprise. Livraison à Bukavu.</p>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Commandez vos briquettes</h2>
+  <p>Réponse rapide sur WhatsApp. Livraison à domicile à Bukavu.</p>
+  <a class="btn big" href="https://wa.me/25762239480?text=Bonjour%20Makala%20Vert%2C%20je%20souhaite%20commander%20des%20briquettes." target="_blank" rel="noopener">Commander sur WhatsApp · +257 62 23 94 80</a>
+  <p class="small">Bukavu, Sud-Kivu, République démocratique du Congo</p>
+</section>
+
+<footer>© <span id="y"></span> MAKALA VERT — Site de démonstration (entreprise fictive)</footer>
+<a class="fab" href="https://wa.me/25762239480" target="_blank" rel="noopener">WhatsApp</a>
+
+<script src="app.js"></script>
+</body>
+</html>
