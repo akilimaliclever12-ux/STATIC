@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a73e8">
+<title>Aperçu fiche Google – ASTIFERME</title>
+<style>
+  :root{--g:#1a73e8;--text:#202124;--muted:#5f6368;--line:#dadce0;--soft:#f1f3f4;--green:#188038;--forest:#0f3a1b;--sun:#ffd60a}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{font-family:Roboto,-apple-system,"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);background:#e8eaed;line-height:1.45}
+  .app{max-width:430px;margin:0 auto;min-height:100vh;background:#fff;position:relative;box-shadow:0 0 30px rgba(0,0,0,.18)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  svg.i{width:22px;height:22px;fill:currentColor;flex:none}
+
+  .banner{position:sticky;top:0;z-index:30;background:#202124;color:#fff;text-align:center;font-size:12.5px;padding:8px 12px;line-height:1.3}
+  .banner b{color:var(--sun)}
+
+  /* ---- carte ---- */
+  .mapbar{position:relative;height:178px;background:#e5e3df;overflow:hidden}
+  .mapbar svg.map{position:absolute;inset:0;width:100%;height:100%}
+  .search{position:absolute;left:12px;right:12px;top:12px;z-index:2;background:#fff;border-radius:26px;padding:11px 16px;display:flex;align-items:center;gap:12px;font-size:15px;box-shadow:0 1px 6px rgba(60,64,67,.35)}
+  .search svg{color:var(--muted)}
+  .search span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .pin{position:absolute;left:54%;top:92px;z-index:1;transform:translate(-50%,0);text-align:center}
+  .pin .lbl{background:#fff;padding:4px 10px;border-radius:8px;font-size:12.5px;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:4px;white-space:nowrap}
+  .pin .dot{width:30px;height:30px;margin-inline:auto;border-radius:50% 50% 50% 0;background:#ea4335;transform:rotate(-45deg);box-shadow:0 3px 8px rgba(0,0,0,.35);position:relative}
+  .pin .dot::after{content:"";position:absolute;inset:9px;border-radius:50%;background:#a52714}
+  .mapnote{position:absolute;right:8px;bottom:6px;font-size:10px;color:#5f6368;background:rgba(255,255,255,.75);padding:1px 6px;border-radius:6px}
+
+  /* ---- fiche ---- */
+  .sheet{position:relative;margin-top:-14px;background:#fff;border-radius:18px 18px 0 0;z-index:3}
+  .grab{width:36px;height:4px;background:#dadce0;border-radius:4px;margin:8px auto 10px}
+  .strip{display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 0 0 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .strip::-webkit-scrollbar{display:none}
+  .strip img{height:158px;width:auto;min-width:150px;object-fit:cover;scroll-snap-align:start;flex:none}
+  .strip img:first-child{width:62%;min-width:230px}
+  .head{padding:16px 18px 4px}
+  .head .top{display:flex;gap:12px;align-items:center}
+  .head .logo{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);flex:none}
+  h1{font-size:23px;font-weight:500;line-height:1.2}
+  .rate{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:var(--muted)}
+  .rate .st{display:flex;gap:1px;color:#bdc1c6}
+  .rate .st svg{width:15px;height:15px}
+  .cat{font-size:14px;color:var(--muted);margin-top:4px}
+  .open{margin-top:6px;font-size:14px}
+  .open b{color:#b06000;font-weight:500}
+  .pill{display:inline-flex;gap:6px;align-items:center;margin-top:10px;background:#e6f4ea;color:#0d652d;border-radius:14px;padding:4px 10px;font-size:12.5px;font-weight:500}
+
+  .actions{display:flex;gap:2px;justify-content:space-between;padding:14px 8px 12px;border-bottom:1px solid var(--line)}
+  .act{flex:1;display:grid;justify-items:center;gap:6px;color:var(--g);font-size:12.5px;font-weight:500;padding:2px 0;text-align:center}
+  .act i{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
+  .act.main i{background:var(--g);color:#fff;border-color:var(--g)}
+  .act.on i{background:#e8f0fe}
+
+  .tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--line);position:sticky;top:34px;background:#fff;z-index:20;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{flex:none;padding:13px 16px;font-size:14px;font-weight:500;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+  .tabs button[aria-selected="true"]{color:var(--g);border-color:var(--g)}
+  .panel[hidden]{display:none}
+
+  .row{display:flex;gap:18px;padding:12px 18px;font-size:14.5px;align-items:flex-start;border-bottom:1px solid var(--soft)}
+  .row .ic{color:var(--g);width:22px;display:flex;justify-content:center;padding-top:1px}
+  .row small{display:block;color:var(--muted);font-size:12.5px}
+  .row .grow{flex:1;min-width:0;word-break:break-word}
+  .row.todo .grow{color:#b06000}
+  .sec{border-top:8px solid var(--soft);padding:16px 18px}
+  .sec h2{font-size:17px;font-weight:500;margin-bottom:10px}
+  .sec p{font-size:14.5px;color:#3c4043}
+  .more{color:var(--g);font-size:14px;font-weight:500;margin-top:8px;display:inline-block}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips span{border:1px solid var(--line);border-radius:16px;padding:6px 12px;font-size:13.5px}
+
+  .cards{display:grid;gap:14px}
+  .prod{display:flex;gap:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .prod img{width:112px;height:112px;object-fit:cover;flex:none}
+  .prod div{padding:10px 12px 10px 0;display:flex;flex-direction:column;gap:2px}
+  .prod b{font-size:15px;font-weight:500}
+  .prod p{font-size:13px;color:var(--muted)}
+  .prod .pr{margin-top:auto;font-size:13px;color:var(--green);font-weight:500}
+
+  .post{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .post img{width:100%;height:190px;object-fit:cover}
+  .post .b{padding:12px 14px 14px}
+  .post time{font-size:12px;color:var(--muted)}
+  .post h3{font-size:15.5px;font-weight:500;margin:2px 0 4px;line-height:1.3}
+  .post p{font-size:13.5px;color:#3c4043}
+  .post .cta{display:inline-block;margin-top:10px;border:1px solid var(--line);border-radius:18px;padding:7px 16px;color:var(--g);font-weight:500;font-size:13.5px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:12px 18px}
+  .grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px}
+  .grid img:first-child{grid-column:1/3;aspect-ratio:16/9}
+
+  .empty{text-align:center;padding:26px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:14px}
+  .empty b{display:block;color:var(--text);font-weight:500;font-size:15.5px;margin-bottom:4px}
+  .btn{display:inline-block;margin-top:12px;border:1px solid var(--line);border-radius:20px;padding:8px 18px;font-size:14px;font-weight:500;color:var(--muted)}
+
+  .steps{list-style:none;display:grid;gap:12px;counter-reset:s}
+  .steps li{counter-increment:s;display:flex;gap:12px;font-size:14.5px;align-items:flex-start}
+  .steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:500}
+  .steps small{display:block;color:var(--muted);font-size:12.5px}
+  .todo-list{display:grid;gap:8px;font-size:14px}
+  .todo-list div{display:flex;gap:10px;align-items:flex-start}
+  .todo-list svg{color:#b06000;width:18px;height:18px;margin-top:2px}
+  .foot{padding:22px 18px 40px;text-align:center;font-size:12px;color:var(--muted);border-top:8px solid var(--soft)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#202124;color:#fff;padding:10px 18px;border-radius:22px;font-size:13.5px;opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  .toast.on{opacity:1;transform:translateX(-50%)}
+  @media (min-width:700px){body{padding:18px 0}.app{border-radius:22px;overflow:hidden;min-height:0}.banner{position:static}.tabs{top:0}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z"/></symbol>
+  <symbol id="i-dir" viewBox="0 0 24 24"><path d="M21.7 11.3l-9-9a1 1 0 00-1.4 0l-9 9a1 1 0 000 1.4l9 9a1 1 0 001.4 0l9-9a1 1 0 000-1.4zM14 14.5V12h-4v3H8v-4a1 1 0 011-1h5V7.5l3.5 3.5-3.5 3.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.6 3.6a1 1 0 01-.25 1z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.9a15.7 15.7 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8.2 8.2 0 010-4h3.4a16.5 16.5 0 000 4H4.3zm.8 2h2.9c.3 1.3.8 2.5 1.4 3.6A8 8 0 015.1 16zm2.9-8H5.1a8 8 0 014.3-3.6C8.8 5.5 8.3 6.7 8 8zM12 20c-.8-1.2-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.8-1.9 4zm2.3-6H9.7a14.7 14.7 0 010-4h4.6a14.7 14.7 0 010 4zm.3 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.9a8 8 0 01-4.3 3.6zM16.4 14a16.5 16.5 0 000-4h3.4a8.2 8.2 0 010 4h-3.4z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2a3.3 3.3 0 000-1.4L16 7.2a3 3 0 10-.9-1.5L8 9.9a3 3 0 100 4.2l7.1 4.2a3 3 0 102.9-2.2z"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M17 3H7a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm.5 5H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 17.3l-5.2 3.1 1.4-5.9L3.6 10.5l6-.5L12 4.4l2.4 5.6 6 .5-4.6 4 1.4 5.9z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 15h-2v-2h2v2zm0-4h-2V9h2v4z"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5a2 2 0 00-2 2v1a5 5 0 004 4.9 5 5 0 003 2.9V19H8v2h8v-2h-3v-2.2a5 5 0 003-2.9A5 5 0 0021 8V7a2 2 0 00-2-2zM5 8V7h2v3.8A3 3 0 015 8zm14 0a3 3 0 01-2 2.8V7h2v1z"/></symbol>
+</svg>
+
+<div class="app">
+  <div class="banner"><b>MAQUETTE DE DÉMONSTRATION</b> · Cette fiche n'est pas encore publiée sur Google</div>
+
+  <!-- Carte -->
+  <div class="mapbar" aria-label="Carte illustrative">
+    <svg class="map" viewBox="0 0 430 178" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="430" height="178" fill="#e5e3df"/>
+      <path d="M0 130 C70 112 120 150 200 140 C280 130 330 100 430 118 L430 178 L0 178Z" fill="#c8e6c9" opacity=".7"/>
+      <rect x="14" y="30" width="86" height="54" rx="8" fill="#cfe8cf"/>
+      <g fill="none" stroke="#fff" stroke-linecap="round">
+        <path d="M-10 70 L440 40" stroke-width="12"/>
+        <path d="M150 -10 L190 190" stroke-width="10"/>
+        <path d="M280 -10 L240 190" stroke-width="9"/>
+        <path d="M-10 120 L440 150" stroke-width="7"/>
+        <path d="M330 20 L440 90" stroke-width="6"/>
+      </g>
+      <g fill="none" stroke="#ffd48a" stroke-width="3" stroke-linecap="round"><path d="M-10 70 L440 40" opacity=".55"/></g>
+      <text x="206" y="62" font-size="9.5" fill="#5f6368" transform="rotate(-4 206 62)">Avenue Fizi</text>
+      <text x="40" y="62" font-size="9" fill="#3d6b3d">Ibanda</text>
+    </svg>
+    <div class="search"><svg class="i"><use href="#i-back"/></svg><span>ASTIFERME Bukavu</span></div>
+    <div class="pin"><div class="lbl">ASTIFERME</div><div class="dot"></div></div>
+    <div class="mapnote">Carte illustrative</div>
+  </div>
+
+  <main class="sheet">
+    <div class="grab"></div>
+    <div class="strip" aria-label="Photos">
+      <img src="img/cover.webp" alt="Employée d'ASTIFERME dans la cage d'élevage de mouches soldat noire" loading="eager">
+      <img src="img/larves.webp" alt="Larves de mouche soldat noire" loading="lazy">
+      <img src="img/equipe.webp" alt="L'équipe ASTIFERME dans l'unité d'élevage" loading="lazy">
+      <img src="img/frass.webp" alt="Frass, engrais organique" loading="lazy">
+      <img src="img/banniere.webp" alt="Bannière ASTIFERME" loading="lazy">
+    </div>
+
+    <div class="head">
+      <div class="top">
+        <img class="logo" src="img/logo.png" alt="Logo ASTIFERME">
+        <h1>ASTIFERME</h1>
+      </div>
+      <div class="rate"><span class="st" aria-hidden="true"><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg></span><span>Pas encore d'avis</span></div>
+      <div class="cat">Recyclage · Engrais organique · Aliments pour animaux</div>
+      <div class="open"><b>Horaires à confirmer</b></div>
+      <div class="pill"><svg class="i" style="width:15px;height:15px"><use href="#i-award"/></svg>1ʳᵉ place · Women in Ag Award 2025</div>
+    </div>
+
+    <div class="actions">
+      <a class="act main" href="https://www.google.com/maps/search/?api=1&query=Avenue+Fizi+Ibanda+Bukavu" target="_blank" rel="noopener"><i><svg class="i"><use href="#i-dir"/></svg></i>Itinéraire</a>
+      <a class="act" href="tel:+243848779247"><i><svg class="i"><use href="#i-phone"/></svg></i>Appeler</a>
+      <a class="act" href="https://wa.me/243848779247" target="_blank" rel="noopener"><i><svg class="i"><use href="#i-chat"/></svg></i>WhatsApp</a>
+      <a class="act" href="https://www.astiferme.site" target="_blank" rel="noopener"><i><svg class="i"><use href="#i-globe"/></svg></i>Site Web</a>
+      <button class="act" id="save" type="button"><i><svg class="i"><use href="#i-save"/></svg></i>Enregistrer</button>
+      <button class="act" id="share" type="button"><i><svg class="i"><use href="#i-share"/></svg></i>Partager</button>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Sections de la fiche">
+      <button role="tab" aria-selected="true" aria-controls="p-apercu" id="t-apercu" type="button">Aperçu</button>
+      <button role="tab" aria-selected="false" aria-controls="p-produits" id="t-produits" type="button">Produits</button>
+      <button role="tab" aria-selected="false" aria-controls="p-maj" id="t-maj" type="button">Mises à jour</button>
+      <button role="tab" aria-selected="false" aria-controls="p-photos" id="t-photos" type="button">Photos</button>
+      <button role="tab" aria-selected="false" aria-controls="p-avis" id="t-avis" type="button">Avis</button>
+      <button role="tab" aria-selected="false" aria-controls="p-publier" id="t-publier" type="button">Publier</button>
+    </div>
+
+    <!-- APERÇU -->
+    <section class="panel" id="p-apercu" role="tabpanel" aria-labelledby="t-apercu">
+      <div class="row"><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><div class="grow">Avenue Fizi, N° 003, Ibanda, Bukavu, RDC</div></div>
+      <div class="row todo"><span class="ic"><svg class="i"><use href="#i-clock"/></svg></span><div class="grow">Horaires d'ouverture à renseigner<small>À confirmer avec ASTIFERME</small></div></div>
+      <div class="row"><span class="ic"><svg class="i"><use href="#i-globe"/></svg></span><div class="grow"><a href="https://www.astiferme.site" target="_blank" rel="noopener" style="color:var(--g)">astiferme.site</a></div></div>
+      <div class="row"><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><div class="grow"><a href="tel:+243848779247">+243 848 779 247</a></div></div>
+      <div class="row"><span class="ic"><svg class="i"><use href="#i-mail"/></svg></span><div class="grow"><a href="mailto:astiferme@gmail.com">astiferme@gmail.com</a></div></div>
+
+      <div class="sec">
+        <h2>À propos</h2>
+        <p>ASTIFERME transforme les déchets organiques en ressources grâce à la mouche soldat noire. Chaque mois, l'entreprise valorise 10 tonnes de déchets et produit 800 kg de larves riches en protéines, pour l'alimentation des poissons, des volailles et des porcs, ainsi que 3 tonnes de frass, un engrais organique qui régénère les sols. Dirigée par Joëlla Buhendwa, lauréate du Women in Ag Award 2025 (1ʳᵉ place, Farming). Visites de l'unité d'élevage, formations et partenariats : contactez-nous.</p>
+      </div>
+
+      <div class="sec">
+        <h2>Produits</h2>
+        <div class="cards">
+          <div class="prod"><img src="img/larves.webp" alt="Larves fraîches" loading="lazy"><div><b>Larves fraîches</b><p>Protéine vivante pour poissons, volailles et porcs.</p><span class="pr">Prix sur demande</span></div></div>
+          <div class="prod"><img src="img/larves-seches.webp" alt="Larves séchées" loading="lazy"><div><b>Larves séchées</b><p>Faciles à stocker et à mélanger à la ration.</p><span class="pr">Prix sur demande</span></div></div>
+          <div class="prod"><img src="img/frass.webp" alt="Frass" loading="lazy"><div><b>Frass, engrais organique</b><p>Améliore la fertilité des sols.</p><span class="pr">Prix sur demande</span></div></div>
+        </div>
+        <a class="more" href="#p-produits" data-go="produits">Voir tous les produits</a>
+      </div>
+
+      <div class="sec">
+        <h2>Aspects pratiques</h2>
+        <div class="chips"><span>Visites de l'unité sur rendez-vous</span><span>Vente en gros et au détail</span><span>Formations</span><span>WhatsApp</span></div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--muted)">Ces attributs sont des propositions à confirmer avec ASTIFERME.</p>
+      </div>
+    </section>
+
+    <!-- PRODUITS -->
+    <section class="panel" id="p-produits" role="tabpanel" aria-labelledby="t-produits" hidden>
+      <div class="sec" style="border-top:0">
+        <div class="cards">
+          <div class="prod"><img src="img/larves.webp" alt="Larves fraîches" loading="lazy"><div><b>Larves fraîches</b><p>Riches en protéines et en acides aminés essentiels. Pour les poissons, les volailles et les porcs.</p><span class="pr">Prix sur demande</span></div></div>
+          <div class="prod"><img src="img/larves-seches.webp" alt="Larves séchées" loading="lazy"><div><b>Larves séchées</b><p>Pratiques à stocker et à transporter, prêtes à mélanger à la ration.</p><span class="pr">Prix sur demande</span></div></div>
+          <div class="prod"><img src="img/frass.webp" alt="Frass" loading="lazy"><div><b>Frass, engrais organique</b><p>Riche en éléments nutritifs : améliore la fertilité des sols et réduit les engrais chimiques.</p><span class="pr">Prix sur demande</span></div></div>
+        </div>
+        <p style="margin-top:14px;font-size:12.5px;color:var(--muted)">Les prix peuvent être ajoutés plus tard dans la fiche.</p>
+      </div>
+    </section>
+
+    <!-- MISES À JOUR -->
+    <section class="panel" id="p-maj" role="tabpanel" aria-labelledby="t-maj" hidden>
+      <div class="sec" style="border-top:0">
+        <div class="cards">
+          <article class="post"><img src="img/post-cafe.webp" alt="Affiche du Café Scientifique" loading="lazy" style="object-fit:contain;background:#2b2118"><div class="b"><time datetime="2026-05-26">26 mai 2026</time><h3>Café Scientifique : la mouche soldat noire face aux déchets</h3><p>Invitée par ShareScreen Africa et l'Université Officielle de Bukavu, ASTIFERME a présenté le potentiel de la mouche soldat noire.</p><a class="cta" href="https://www.linkedin.com/posts/astiferme-cafaezscientifique-mouchesoldatnoire-share-7465095144011149312-Z2v6/" target="_blank" rel="noopener">En savoir plus</a></div></article>
+          <article class="post"><img src="img/post-impact.webp" alt="Rencontre Impact Woman" loading="lazy"><div class="b"><time datetime="2026-05-04">4 mai 2026</time><h3>Impact Woman : du « je rêve » au « je réalise »</h3><p>Une rencontre pour le leadership féminin, avec l'appui de l'UNICEF et du Club U-Report Filles.</p><a class="cta" href="https://www.linkedin.com/posts/idaezes-daezcisions-regards-ugcPost-7457025080930222080-C9XZ/" target="_blank" rel="noopener">En savoir plus</a></div></article>
+          <article class="post"><img src="img/post-lac.webp" alt="Collecte de déchets au bord du lac" loading="lazy" style="object-position:50% 40%"><div class="b"><time datetime="2026-04-28">28 avril 2026</time><h3>Agir pour le lac : collecte de déchets au port SNCC / Mashinji</h3><p>Aux côtés de plus de 70 organisations, ASTIFERME a participé à l'assainissement du bord du lac.</p><a class="cta" href="https://www.linkedin.com/posts/biodaezgradables-plastiques-urgence-ugcPost-7454977124207161344-blxa/" target="_blank" rel="noopener">En savoir plus</a></div></article>
+          <article class="post"><img src="img/post-greentalk.webp" alt="GreenTalkCafé" loading="lazy"><div class="b"><time datetime="2026-04-11">11 avril 2026</time><h3>De l'emploi dans les déchets : le déclic</h3><p>Invitée par Green Alpha au GreenTalkCafé, ASTIFERME a partagé comment les déchets peuvent devenir une source d'emplois pour les jeunes.</p><a class="cta" href="https://www.linkedin.com/posts/greentalkcafaez-astiferme-greenalpha-ugcPost-7448776815868792832-kgf0/" target="_blank" rel="noopener">En savoir plus</a></div></article>
+        </div>
+        <p style="margin-top:14px;font-size:12.5px;color:var(--muted)">Ces mises à jour reprennent les publications LinkedIn d'ASTIFERME. Une mise à jour par semaine garde la fiche vivante.</p>
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section class="panel" id="p-photos" role="tabpanel" aria-labelledby="t-photos" hidden>
+      <div class="grid">
+        <img src="img/cover.webp" alt="Cage d'élevage" loading="lazy">
+        <img src="img/dechets.webp" alt="Tri des déchets organiques" loading="lazy">
+        <img src="img/elevage.webp" alt="Étagères d'élevage" loading="lazy">
+        <img src="img/larves.webp" alt="Larves" loading="lazy">
+        <img src="img/equipe.webp" alt="Équipe" loading="lazy">
+        <img src="img/visite-aali.webp" alt="Visite d'AALI" loading="lazy">
+        <img src="img/masterclass.webp" alt="Masterclass" loading="lazy">
+        <img src="img/frass.webp" alt="Frass" loading="lazy">
+        <img src="img/trophee.webp" alt="Trophée Women in Ag Award 2025" loading="lazy" style="object-position:50% 30%">
+      </div>
+      <p style="padding:0 18px 20px;font-size:12.5px;color:var(--muted)">Toutes ces photos viennent d'ASTIFERME. Vérifier le droit à l'image des personnes avant publication.</p>
+    </section>
+
+    <!-- AVIS -->
+    <section class="panel" id="p-avis" role="tabpanel" aria-labelledby="t-avis" hidden>
+      <div class="sec" style="border-top:0">
+        <div class="empty"><b>Aucun avis pour l'instant</b>Les avis de vos vrais clients et partenaires apparaîtront ici, avec la note moyenne.<br><span class="btn" aria-disabled="true">Rédiger un avis (désactivé dans la maquette)</span></div>
+        <p style="margin-top:14px;font-size:13.5px;color:#3c4043"><b style="font-weight:500">Bon à savoir :</b> n'inventez jamais d'avis et n'en achetez pas, Google les supprime. Demandez plutôt à vos partenaires, éleveurs et participants aux formations de laisser un avis honnête avec le lien de la fiche.</p>
+      </div>
+    </section>
+
+    <!-- PUBLIER -->
+    <section class="panel" id="p-publier" role="tabpanel" aria-labelledby="t-publier" hidden>
+      <div class="sec" style="border-top:0">
+        <h2>Comment publier cette fiche</h2>
+        <ol class="steps">
+          <li><div>Créer la fiche sur <b style="font-weight:500">business.google.com</b><small>Avec le compte Google d'ASTIFERME, nom exact « ASTIFERME ».</small></div></li>
+          <li><div>Choisir la catégorie principale<small>Proposition : Recyclage. Secondaires : Fournisseur d'engrais, Aliments pour animaux.</small></div></li>
+          <li><div>Saisir l'adresse : Avenue Fizi, N° 003, Ibanda, Bukavu<small>Placer l'épingle au bon endroit sur la carte.</small></div></li>
+          <li><div>Valider la propriété<small>Google propose un appel, un SMS, un email ou une vidéo selon le cas.</small></div></li>
+          <li><div>Ajouter téléphone, site, horaires et description</div></li>
+          <li><div>Ajouter au moins 10 photos<small>Extérieur, équipe, produits, unité d'élevage.</small></div></li>
+          <li><div>Demander les premiers avis à de vrais clients et partenaires</div></li>
+        </ol>
+      </div>
+      <div class="sec">
+        <h2>À confirmer avec ASTIFERME</h2>
+        <div class="todo-list">
+          <div><svg class="i"><use href="#i-alert"/></svg><span>Horaires d'ouverture et jours de visite</span></div>
+          <div><svg class="i"><use href="#i-alert"/></svg><span>Catégories exactes à choisir</span></div>
+          <div><svg class="i"><use href="#i-alert"/></svg><span>Zone de livraison ou de service</span></div>
+          <div><svg class="i"><use href="#i-alert"/></svg><span>Prix des produits, si affichés</span></div>
+          <div><svg class="i"><use href="#i-alert"/></svg><span>Droit à l'image des personnes sur les photos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">Maquette de présentation · non affiliée à Google<br>Pas de note ni d'avis affichés : seuls de vrais avis apparaîtront après la publication.</div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  var toast=document.getElementById('toast'),tt;
+  function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},2000)}
+  function show(name,scroll){
+    tabs.forEach(function(t){var on=t.id==='t-'+name;t.setAttribute('aria-selected',on?'true':'false');if(on&&t.scrollIntoView){t.scrollIntoView({inline:'center',block:'nearest'})}});
+    document.querySelectorAll('.panel').forEach(function(p){p.hidden=p.id!=='p-'+name});
+    if(scroll){var top=document.querySelector('.tabs').getBoundingClientRect().top+window.scrollY-34;window.scrollTo({top:top,behavior:'smooth'})}
+    try{history.replaceState(null,'','#'+name)}catch(e){}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.id.slice(2),true)})});
+  document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();show(a.dataset.go,true)})});
+  var h=(location.hash||'').slice(1);if(h&&document.getElementById('p-'+h))show(h,false);
+  document.getElementById('save').addEventListener('click',function(){this.classList.toggle('on');say(this.classList.contains('on')?'Enregistré (démo)':'Retiré (démo)')});
+  document.getElementById('share').addEventListener('click',function(){
+    var d={title:'ASTIFERME – aperçu de fiche Google',text:'Maquette de la fiche Google d\'ASTIFERME',url:location.href.split('#')[0]};
+    if(navigator.share){navigator.share(d).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){say('Lien copié')})}
+    else{say(d.url)}
+  });
+})();
+</script>
+</body>
+</html>
