@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BarretbyBelton — Agiza suti / Order a suit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav always">
+  <a class="logo" href="index.html">Barret<i>by</i>Belton</a>
+  <div class="right"><div class="lang"><button data-lang="sw">SW</button><button data-lang="en">EN</button></div></div>
+</header>
+
+<main class="product">
+  <a class="back" href="index.html" data-i18n="back"></a>
+  <div class="head">
+    <p class="kicker" data-i18n="prod_k"></p>
+    <h1 data-i18n="prod_h"></h1>
+    <p data-i18n="prod_p"></p>
+  </div>
+
+  <div class="layout">
+    <div class="viewer"><svg id="suit" viewBox="0 0 360 600" role="img" aria-label="Suit"></svg></div>
+
+    <div class="panel">
+      <h3 data-i18n="fabric"></h3>
+      <div class="sw" id="fabrics"></div>
+      <p class="fabname" id="fabname"></p>
+
+      <h3 data-i18n="style"></h3>
+      <div class="seg" id="styles"></div>
+
+      <h3 data-i18n="fit"></h3>
+      <div class="seg" id="fits"></div>
+
+      <h3 data-i18n="meas_h"></h3>
+      <div class="seg" id="units" style="margin-bottom:8px"></div>
+      <div id="sliders"></div>
+
+      <div class="summary">
+        <div><span data-i18n="sum_size"></span><b id="sSize">—</b></div>
+        <div><span data-i18n="sum_price"></span><b id="sPrice">—</b></div>
+        <div><span data-i18n="sum_ready"></span><b id="sReady">—</b></div>
+      </div>
+      <a class="btn" id="send" target="_blank" rel="noopener" data-i18n="send"></a>
+      <p class="note" data-i18n="note"></p>
+    </div>
+  </div>
+</main>
+
+<script src="i18n.js"></script>
+<script src="product.js"></script>
+</body>
+</html>

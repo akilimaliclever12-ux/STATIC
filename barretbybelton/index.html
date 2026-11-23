@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BarretbyBelton — Suti zilizoshonwa kwa vipimo vyako</title>
+<meta name="description" content="BarretbyBelton: atelier ya suti za kushonewa, Tanzania. Tovuti ya majaribio / demo website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">Barret<i>by</i>Belton</a>
+  <nav>
+    <a href="#top" data-i18n="nav_process"></a>
+    <a href="#promise" data-i18n="nav_promise"></a>
+    <a href="product.html" data-i18n="nav_order"></a>
+  </nav>
+  <div class="right">
+    <div class="lang"><button data-lang="sw">SW</button><button data-lang="en">EN</button></div>
+    <a class="btn" href="product.html" data-i18n="nav_order"></a>
+  </div>
+</header>
+
+<section class="stage" id="top">
+  <div class="sticky">
+    <div class="bg" id="bg"></div>
+    <canvas id="cv"></canvas>
+    <div class="vignette"></div>
+    <div class="loader" id="loader"><span id="pct">0</span>%</div>
+
+    <div class="scene" data-bg="#111d2e">
+      <p class="kicker" data-i18n="s1_k"></p><h1 data-i18n="s1_h"></h1><p data-i18n="s1_p"></p>
+      <p class="hint" data-i18n="scroll"></p>
+    </div>
+    <div class="scene" data-bg="#241a12">
+      <p class="kicker" data-i18n="s2_k"></p><h2 data-i18n="s2_h"></h2><p data-i18n="s2_p"></p>
+    </div>
+    <div class="scene" data-bg="#1a1d22">
+      <p class="kicker" data-i18n="s3_k"></p><h2 data-i18n="s3_h"></h2><p data-i18n="s3_p"></p>
+    </div>
+    <div class="scene" data-bg="#2a1620">
+      <p class="kicker" data-i18n="s4_k"></p><h2 data-i18n="s4_h"></h2><p data-i18n="s4_p"></p>
+    </div>
+    <div class="scene" data-bg="#1c2418">
+      <p class="kicker" data-i18n="s5_k"></p><h2 data-i18n="s5_h"></h2><p data-i18n="s5_p"></p>
+    </div>
+    <div class="scene" data-bg="#0d1b2a">
+      <p class="kicker" data-i18n="s6_k"></p><h2 data-i18n="s6_h"></h2><p data-i18n="s6_p"></p>
+      <a class="btn" href="product.html" data-i18n="cta_order"></a>
+    </div>
+
+    <ol class="steps" id="steps"></ol>
+    <p class="count" id="count"></p>
+  </div>
+</section>
+
+<section class="promise" id="promise">
+  <p class="kicker" data-i18n="promise_k"></p>
+  <h2 class="title" data-i18n="promise_h"></h2>
+  <div class="cards">
+    <article><span class="num">01</span><h3 data-i18n="p1_h"></h3><p data-i18n="p1_p"></p></article>
+    <article><span class="num">02</span><h3 data-i18n="p2_h"></h3><p data-i18n="p2_p"></p></article>
+    <article><span class="num">03</span><h3 data-i18n="p3_h"></h3><p data-i18n="p3_p"></p></article>
+  </div>
+  <p class="demo" data-i18n="demo"></p>
+</section>
+
+<section class="contact">
+  <h2 data-i18n="contact_h"></h2>
+  <p data-i18n="contact_p"></p>
+  <a class="btn big" data-wa target="_blank" rel="noopener"><span data-i18n="contact_btn"></span> · <span data-wa-display></span></a>
+  <p class="small" data-i18n="place"></p>
+</section>
+
+<footer>© <span id="y"></span> BarretbyBelton — <span data-i18n="footer"></span></footer>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
