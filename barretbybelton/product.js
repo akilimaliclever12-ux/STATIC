@@ -1,134 +1,118 @@
 (() => {
-  const FABRICS = [
-    { id: 'navy', c: '#14213d', k: 'f_navy', tier: 0 },
-    { id: 'char', c: '#33363b', k: 'f_char', tier: 0 },
-    { id: 'wine', c: '#5e1a2b', k: 'f_wine', tier: 1 },
-    { id: 'olive', c: '#4a5230', k: 'f_olive', tier: 1 },
-    { id: 'cream', c: '#d6cbb2', k: 'f_cream', tier: 2 }
+  /* Chaque produit pointe vers une photo du mannequin déjà habillé (tryon/looks/NN.jpg).
+     Quand les vraies photos haute résolution arrivent, on remplace les fichiers : le code ne change pas. */
+  const CATS = [
+    { id: 'suit', k: 'c_suit', items: [
+      { id: 'suit-2piece-navy', price: 600000 }, { id: 'suit-2piece-charcoal', price: 600000 }, { id: 'suit-2piece-wine', price: 620000 },
+      { id: 'suit-3piece-navy', price: 760000 }, { id: 'suit-3piece-charcoal', price: 760000 } ] },
+    { id: 'jacket', k: 'c_jacket', items: [
+      { id: 'jacket-sb-navy', price: 380000 }, { id: 'jacket-db-charcoal', price: 450000 } ] },
+    { id: 'top', k: 'c_top', items: [
+      { id: 'shirt-white', price: 90000 }, { id: 'shirt-blue', price: 95000 }, { id: 'shirt-pink', price: 95000 },
+      { id: 'shirt-pinstripe', price: 105000 }, { id: 'shirt-chambray', price: 100000 }, { id: 'shirt-ivory', price: 95000 },
+      { id: 'shirt-french', price: 120000 }, { id: 'waistcoat-charcoal', price: 160000 } ] },
+    { id: 'trs', k: 'c_trs', items: [
+      { id: 'trousers-charcoal', price: 220000 }, { id: 'trousers-navy', price: 220000 }, { id: 'trousers-grey', price: 225000 },
+      { id: 'trousers-black', price: 230000 }, { id: 'trousers-beige', price: 235000 }, { id: 'trousers-brown', price: 230000 } ] },
+    { id: 'tie', k: 'c_tie', items: [
+      { id: 'tie-burgundy', price: 35000 }, { id: 'tie-silver', price: 38000 }, { id: 'tie-green', price: 42000 },
+      { id: 'tie-mustard', price: 38000 }, { id: 'bowtie-black', price: 40000 } ] },
+    { id: 'shoes', k: 'c_shoes', items: [
+      { id: 'shoes-oxford', price: 170000 }, { id: 'shoes-loafer', price: 180000 }, { id: 'shoes-wingtip-brown', price: 210000 },
+      { id: 'shoes-loafer-tan', price: 190000 }, { id: 'shoes-monk-oxblood', price: 230000 }, { id: 'shoes-monk-black', price: 220000 },
+      { id: 'boots-chelsea-tan', price: 260000 } ] }
   ];
-  const STYLES = [{ id: 2, k: 'st2', base: 650000 }, { id: 3, k: 'st3', base: 820000 }];
-  const FITS = [{ id: 'slim', k: 'fit_slim', ease: 4 }, { id: 'reg', k: 'fit_reg', ease: 7 }, { id: 'com', k: 'fit_com', ease: 11 }];
-  const TIER_ADD = [0, 120000, 220000];
-  const M = [
-    { id: 'height', k: 'm_height', min: 150, max: 200, v: 175 },
-    { id: 'chest', k: 'm_chest', min: 80, max: 130, v: 100 },
-    { id: 'waist', k: 'm_waist', min: 66, max: 120, v: 86 },
-    { id: 'shoulder', k: 'm_shoulder', min: 38, max: 56, v: 46 },
-    { id: 'sleeve', k: 'm_sleeve', min: 54, max: 70, v: 63 },
-    { id: 'jacket', k: 'm_jacket', min: 64, max: 86, v: 74 },
-    { id: 'inseam', k: 'm_inseam', min: 70, max: 92, v: 81 }
+  CATS.forEach(c => c.items.forEach(i => { i.k = 'p_' + i.id; }));
+  const PER = 6;
+  const SIZES = [
+    { id: 'S', chest: 92, waist: 78, shoulder: 44 }, { id: 'M', chest: 100, waist: 86, shoulder: 46 },
+    { id: 'L', chest: 108, waist: 94, shoulder: 48 }, { id: 'XL', chest: 116, waist: 102, shoulder: 50 },
+    { id: 'XXL', chest: 124, waist: 110, shoulder: 52 }
   ];
-  const S = { fabric: 'navy', style: 2, fit: 'reg', unit: 'cm', hot: null, m: Object.fromEntries(M.map(x => [x.id, x.v])) };
+  const MEAS = [
+    { id: 'height', k: 'm_height', min: 160, max: 195, v: 178 },
+    { id: 'chest', k: 'm_chest', min: 84, max: 130, v: 100 },
+    { id: 'waist', k: 'm_waist', min: 70, max: 120, v: 86 },
+    { id: 'shoulder', k: 'm_shoulder', min: 40, max: 54, v: 46 },
+    { id: 'sleeve', k: 'm_sleeve', min: 56, max: 70, v: 63 },
+    { id: 'jacket', k: 'm_jacket', min: 66, max: 84, v: 74 },
+    { id: 'inseam', k: 'm_inseam', min: 74, max: 90, v: 81 }
+  ];
+  const S = { page: 0, cat: 'suit', item: 'suit-2piece-navy', unit: 'cm', front: 'A', m: Object.fromEntries(MEAS.map(x => [x.id, x.v])) };
 
   const $ = id => document.getElementById(id);
   const fmt = cm => S.unit === 'cm' ? `${Math.round(cm)} cm` : `${(cm * 0.3937).toFixed(1)} in`;
   const money = n => 'TSh ' + n.toLocaleString(getLang() === 'sw' ? 'sw-TZ' : 'en-GB');
-  const shade = (hex, amt) => {
-    const n = parseInt(hex.slice(1), 16);
-    const f = v => Math.max(0, Math.min(255, v + amt));
-    return '#' + [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(f).map(v => v.toString(16).padStart(2, '0')).join('');
-  };
+  const cat = () => CATS.find(c => c.id === S.cat);
+  const all = () => CATS.flatMap(c => c.items.map(i => ({ ...i, cat: c })));
+  const cur = () => all().find(i => i.id === S.item);
+  const nearestSize = () => SIZES.reduce((a, b) => Math.abs(b.chest - S.m.chest) < Math.abs(a.chest - S.m.chest) ? b : a).id;
 
-  function controls() {
-    $('fabrics').innerHTML = FABRICS.map(f => `<button data-f="${f.id}" style="background:${f.c}" class="${S.fabric === f.id ? 'on' : ''}" aria-label="${t(f.k)}"></button>`).join('');
-    $('fabname').textContent = t(FABRICS.find(f => f.id === S.fabric).k);
-    $('styles').innerHTML = STYLES.map(s => `<button data-s="${s.id}" class="${S.style === s.id ? 'on' : ''}">${t(s.k)}</button>`).join('');
-    $('fits').innerHTML = FITS.map(f => `<button data-fit="${f.id}" class="${S.fit === f.id ? 'on' : ''}">${t(f.k)}</button>`).join('');
+  function show(look) {
+    const next = S.front === 'A' ? 'B' : 'A', imgN = $('img' + next), imgF = $('img' + S.front);
+    const url = `tryon/looks/${look}.jpg`;
+    const done = () => { imgN.classList.add('on'); imgF.classList.remove('on'); S.front = next; };
+    imgN.onload = done; imgN.src = url;
+    if (imgN.complete && imgN.naturalWidth) done();
+  }
+
+  function tabs() {
+    $('tabs').innerHTML = CATS.map(c => `<button data-cat="${c.id}" class="${c.id === S.cat ? 'on' : ''}">${t(c.k)}</button>`).join('');
+  }
+  const maxPage = () => Math.max(0, Math.ceil(cat().items.length / PER) - 1);
+  function cards() {
+    const items = cat().items.slice(S.page * PER, S.page * PER + PER);
+    const card = (it, i) => `<button class="card ${it.id === S.item ? 'on' : ''}" data-item="${it.id}" style="--i:${i}">
+      <img src="tryon/products/${it.id}.jpg" onerror="this.onerror=null;this.src='tryon/thumbs/${it.id}.jpg'" alt=""><span>${t(it.k)}</span><b>${money(it.price)}</b>${it.id === S.item ? `<em>${t('worn')}</em>` : ''}</button>`;
+    const L = items.filter((_, i) => i % 2 === 0), R = items.filter((_, i) => i % 2 === 1);
+    $('cardsL').innerHTML = L.map(card).join('');
+    $('cardsR').innerHTML = R.map(card).join('');
+    const n = maxPage();
+    $('pager').innerHTML = n ? `<button data-page="prev" ${S.page === 0 ? 'disabled' : ''}>&#8249;</button><span>${S.page + 1} / ${n + 1}</span><button data-page="next" ${S.page === n ? 'disabled' : ''}>&#8250;</button>` : '';
+  }
+  function bar() {
+    const it = cur();
+    $('pCat').textContent = t(it.cat.k);
+    $('pName').textContent = t(it.k);
+    $('pPrice').textContent = money(it.price);
+    $('sSize').textContent = nearestSize() + ' (EU ' + 2 * Math.round(S.m.chest / 4) + ')';
+    $('sReady').textContent = '14 ' + t('days');
+    $('sizes').innerHTML = SIZES.map(s => `<button data-size="${s.id}" class="${nearestSize() === s.id ? 'on' : ''}">${s.id}</button>`).join('');
     $('units').innerHTML = ['cm', 'in'].map(u => `<button data-u="${u}" class="${S.unit === u ? 'on' : ''}">${u}</button>`).join('');
-    $('sliders').innerHTML = M.map(x => `
-      <div class="row" data-id="${x.id}">
-        <label for="r_${x.id}">${t(x.k)}</label>
-        <input type="range" id="r_${x.id}" min="${x.min}" max="${x.max}" value="${S.m[x.id]}">
-        <output id="o_${x.id}">${fmt(S.m[x.id])}</output>
-      </div>`).join('');
-  }
-
-  function draw() {
-    const m = S.m, fab = FABRICS.find(f => f.id === S.fabric), ease = FITS.find(f => f.id === S.fit).ease;
-    const s = 2.7 + (m.height - 150) / 50 * 0.4, cx = 180;
-    const neckY = 52, shY = neckY + 4 * s, chestY = shY + 24 * s, waistY = neckY + 44 * s, hemY = neckY + m.jacket * s;
-    const hn = 6 * s, hs = m.shoulder * s / 2, hc = (m.chest / 2 + ease) * s / 2, hw = (m.waist / 2 + ease) * s / 2, hh = hw + 2 * s;
-    const cuffY = shY + m.sleeve * s, cuffW = 9 * s, crotchY = waistY + 27 * s, legEnd = crotchY + m.inseam * s;
-    const hwT = (m.waist / 2 + 5) * s / 2;
-    const c = fab.c, dark = shade(c, -22), light = shade(c, 20), stroke = shade(c, 38);
-    const hot = id => S.hot === id;
-    const g = (id, inner) => `<g opacity="${hot(id) ? 1 : 0.42}" stroke="${hot(id) ? '#c9a26a' : '#f2ead8'}" stroke-width="${hot(id) ? 1.6 : 1}" fill="none" stroke-dasharray="4 3">${inner}</g>`;
-    const label = (x, y, txt, id) => `<g><rect x="${x - 30}" y="${y - 11}" width="60" height="18" rx="2" fill="#0a0f16" opacity=".85"/><text x="${x}" y="${y + 2}" fill="${hot(id) ? '#c9a26a' : '#f2ead8'}" font-size="11" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">${txt}</text></g>`;
-
-    const legL = `${cx - hwT},${waistY} ${cx - hwT + 4},${legEnd} ${cx - hwT + 4 + 18 * s},${legEnd} ${cx - 3},${crotchY} ${cx},${waistY}`;
-    const legR = `${cx + hwT},${waistY} ${cx + hwT - 4},${legEnd} ${cx + hwT - 4 - 18 * s},${legEnd} ${cx + 3},${crotchY} ${cx},${waistY}`;
-    const body = `${cx - hn},${neckY} ${cx - hs},${shY} ${cx - hc},${chestY} ${cx - hw},${waistY} ${cx - hh},${hemY} ${cx + hh},${hemY} ${cx + hw},${waistY} ${cx + hc},${chestY} ${cx + hs},${shY} ${cx + hn},${neckY}`;
-    const vTip = waistY - 8;
-    const shirt = `${cx - hn},${neckY} ${cx + hn},${neckY} ${cx},${vTip}`;
-    const vest = S.style === 3 ? `<polygon points="${cx - hn + 3},${neckY + 30} ${cx + hn - 3},${neckY + 30} ${cx},${vTip + 24} " fill="${dark}"/><polygon points="${cx - hn},${neckY + 26} ${cx + hn},${neckY + 26} ${cx + hn - 2},${vTip + 10} ${cx},${vTip + 28} ${cx - hn + 2},${vTip + 10}" fill="${shade(c, -10)}" stroke="${stroke}" stroke-width=".8"/>` : '';
-    const lapL = `${cx - hn},${neckY} ${cx - hn - 16},${neckY + 52} ${cx - 4},${vTip + 2} ${cx - 2},${vTip - 28}`;
-    const lapR = `${cx + hn},${neckY} ${cx + hn + 16},${neckY + 52} ${cx + 4},${vTip + 2} ${cx + 2},${vTip - 28}`;
-    const slL = `${cx - hs},${shY} ${cx - hs - 14},${cuffY} ${cx - hs - 14 + cuffW},${cuffY} ${cx - hc + 5},${chestY + 10}`;
-    const slR = `${cx + hs},${shY} ${cx + hs + 14},${cuffY} ${cx + hs + 14 - cuffW},${cuffY} ${cx + hc - 5},${chestY + 10}`;
-
-    $('suit').innerHTML = `
-      <polygon points="${legL}" fill="${dark}" stroke="${stroke}" stroke-width="1"/>
-      <polygon points="${legR}" fill="${dark}" stroke="${stroke}" stroke-width="1"/>
-      <polygon points="${body}" fill="${c}" stroke="${stroke}" stroke-width="1.2" stroke-linejoin="round"/>
-      <polygon points="${shirt}" fill="#e9e4d8"/>
-      ${vest}
-      <polygon points="${lapL}" fill="${light}" stroke="${stroke}" stroke-width=".8"/>
-      <polygon points="${lapR}" fill="${light}" stroke="${stroke}" stroke-width=".8"/>
-      <line x1="${cx}" y1="${vTip}" x2="${cx}" y2="${hemY}" stroke="${stroke}" stroke-width=".8"/>
-      <polygon points="${slL}" fill="${c}" stroke="${stroke}" stroke-width="1" stroke-linejoin="round"/>
-      <polygon points="${slR}" fill="${c}" stroke="${stroke}" stroke-width="1" stroke-linejoin="round"/>
-      <circle cx="${cx - 4}" cy="${vTip + 22}" r="3" fill="#0a0f16"/><circle cx="${cx - 4}" cy="${vTip + 22 + 26}" r="3" fill="#0a0f16"/>
-      ${g('shoulder', `<line x1="${cx - hs}" y1="${shY - 12}" x2="${cx + hs}" y2="${shY - 12}"/>`)}${label(cx, shY - 22, fmt(m.shoulder), 'shoulder')}
-      ${g('chest', `<line x1="${cx - hc}" y1="${chestY}" x2="${cx + hc}" y2="${chestY}"/>`)}${label(cx - hc - 8 > 40 ? cx + hc - 24 : cx, chestY - 12, fmt(m.chest), 'chest')}
-      ${g('waist', `<line x1="${cx - hw}" y1="${waistY}" x2="${cx + hw}" y2="${waistY}"/>`)}${label(cx, waistY + 14, fmt(m.waist), 'waist')}
-      ${g('jacket', `<line x1="${cx + 100}" y1="${neckY}" x2="${cx + 100}" y2="${hemY}"/>`)}${label(cx + 100, (neckY + hemY) / 2, fmt(m.jacket), 'jacket')}
-      ${g('sleeve', `<line x1="${cx - hs - 40}" y1="${shY}" x2="${cx - hs - 40}" y2="${cuffY}"/>`)}${label(cx - hs - 40, (shY + cuffY) / 2, fmt(m.sleeve), 'sleeve')}
-      ${g('inseam', `<line x1="${cx + 14}" y1="${crotchY}" x2="${cx + 14}" y2="${legEnd}"/>`)}${label(cx + 14, (crotchY + legEnd) / 2, fmt(m.inseam), 'inseam')}
-      ${g('height', `<line x1="342" y1="${neckY - 22}" x2="342" y2="${legEnd + 6}"/>`)}${label(330, (neckY + legEnd) / 2 + 60, fmt(m.height), 'height')}
-    `;
-  }
-
-  function summary() {
-    const st = STYLES.find(x => x.id === S.style), fab = FABRICS.find(f => f.id === S.fabric);
-    const size = 2 * Math.round(S.m.chest / 4);
-    $('sSize').textContent = 'EU ' + size;
-    $('sPrice').textContent = money(st.base + TIER_ADD[fab.tier]);
-    $('sReady').textContent = (S.style === 3 ? 16 : 14) + ' ' + t('days');
-    const L = [t('wa_msg'), '',
-      `${t('fabric')}: ${t(fab.k)}`, `${t('style')}: ${t(st.k)}`, `${t('fit')}: ${t(FITS.find(f => f.id === S.fit).k)}`, '',
-      ...M.map(x => `${t(x.k)}: ${Math.round(S.m[x.id])} cm`), '',
-      `${t('sum_size')}: EU ${size}`, `${t('sum_price')}: ${$('sPrice').textContent}`];
+    const keep = $('sliders').querySelector('input:focus');
+    if (!keep) $('sliders').innerHTML = MEAS.map(x => `
+      <div class="row" data-id="${x.id}"><label for="r_${x.id}">${t(x.k)}</label>
+      <input type="range" id="r_${x.id}" min="${x.min}" max="${x.max}" value="${S.m[x.id]}"><output id="o_${x.id}">${fmt(S.m[x.id])}</output></div>`).join('');
+    const L = [t('wa_msg'), '', `${t('i_jsb') && ''}${t(it.cat.k)}: ${t(it.k)}`, `${t('sum_price')}: ${money(it.price)}`, '',
+      `${t('size_h')}: ${nearestSize()} (EU ${2 * Math.round(S.m.chest / 4)})`, ...MEAS.map(x => `${t(x.k)}: ${Math.round(S.m[x.id])} cm`)];
     $('send').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(L.join('\n'));
   }
-
-  function refresh() { draw(); summary(); }
+  function all_() { tabs(); cards(); bar(); }
 
   document.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.f) S.fabric = b.dataset.f;
-    else if (b.dataset.s) S.style = +b.dataset.s;
-    else if (b.dataset.fit) S.fit = b.dataset.fit;
+    if (b.dataset.cat) { S.cat = b.dataset.cat; S.page = 0; S.item = cat().items[0].id; show(cur().id); }
+    else if (b.dataset.page) { S.page = Math.max(0, Math.min(maxPage(), S.page + (b.dataset.page === 'next' ? 1 : -1))); }
+    else if (b.dataset.item) { S.item = b.dataset.item; show(cur().id); }
+    else if (b.dataset.size) { const z = SIZES.find(s => s.id === b.dataset.size); S.m.chest = z.chest; S.m.waist = z.waist; S.m.shoulder = z.shoulder; }
     else if (b.dataset.u) S.unit = b.dataset.u;
     else return;
-    controls(); refresh();
+    all_();
   });
   document.addEventListener('input', e => {
     const r = e.target; if (r.type !== 'range') return;
-    const id = r.closest('.row').dataset.id;
-    S.m[id] = +r.value; S.hot = id;
+    const id = r.closest('.row').dataset.id; S.m[id] = +r.value;
     $('o_' + id).textContent = fmt(S.m[id]);
-    refresh();
+    $('sSize').textContent = nearestSize() + ' (EU ' + 2 * Math.round(S.m.chest / 4) + ')';
+    $('sizes').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.size === nearestSize()));
+    bar_link();
   });
-  const setHot = (e, on) => {
-    const row = e.target.closest && e.target.closest('.row'); if (!row) return;
-    S.hot = on ? row.dataset.id : null;
-    document.querySelectorAll('.row').forEach(r => r.classList.toggle('hot', r === row && on));
-    draw();
-  };
-  document.addEventListener('pointerover', e => setHot(e, true));
-  document.addEventListener('pointerout', e => setHot(e, false));
-  document.addEventListener('focusin', e => setHot(e, true));
-  document.addEventListener('focusout', e => setHot(e, false));
-  document.addEventListener('langchange', () => { controls(); refresh(); });
-  controls(); refresh();
+  function bar_link() {
+    const it = cur();
+    const L = [t('wa_msg'), '', `${t(it.cat.k)}: ${t(it.k)}`, `${t('sum_price')}: ${money(it.price)}`, '',
+      `${t('size_h')}: ${nearestSize()} (EU ${2 * Math.round(S.m.chest / 4)})`, ...MEAS.map(x => `${t(x.k)}: ${Math.round(S.m[x.id])} cm`)];
+    $('send').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(L.join('\n'));
+  }
+  document.addEventListener('langchange', all_);
+  all_(); $('imgA').src = `tryon/looks/${cur().id}.jpg`;
 })();

@@ -6,51 +6,53 @@
 <title>BarretbyBelton — Agiza suti / Order a suit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="showroom-page">
 <header class="nav always">
   <a class="logo" href="index.html">Barret<i>by</i>Belton</a>
   <div class="right"><div class="lang"><button data-lang="sw">SW</button><button data-lang="en">EN</button></div></div>
 </header>
 
-<main class="product">
-  <a class="back" href="index.html" data-i18n="back"></a>
-  <div class="head">
-    <p class="kicker" data-i18n="prod_k"></p>
-    <h1 data-i18n="prod_h"></h1>
-    <p data-i18n="prod_p"></p>
+<section class="room" id="room">
+  <div class="light"></div>
+  <div class="wall-word" aria-hidden="true">BELTON</div>
+  <div class="floor"></div>
+
+  <nav class="tabs" id="tabs"></nav>
+  <div class="pager" id="pager"></div>
+
+  <div class="cards left" id="cardsL"></div>
+  <div class="figure" id="figure">
+    <img class="a on" id="imgA" alt="">
+    <img class="b" id="imgB" alt="">
   </div>
+  <div class="cards right" id="cardsR"></div>
+</section>
 
-  <div class="layout">
-    <div class="viewer"><svg id="suit" viewBox="0 0 360 600" role="img" aria-label="Suit"></svg></div>
-
-    <div class="panel">
-      <h3 data-i18n="fabric"></h3>
-      <div class="sw" id="fabrics"></div>
-      <p class="fabname" id="fabname"></p>
-
-      <h3 data-i18n="style"></h3>
-      <div class="seg" id="styles"></div>
-
-      <h3 data-i18n="fit"></h3>
-      <div class="seg" id="fits"></div>
-
-      <h3 data-i18n="meas_h"></h3>
-      <div class="seg" id="units" style="margin-bottom:8px"></div>
+<section class="bar">
+  <div class="picked">
+    <p class="kicker" id="pCat"></p>
+    <h1 id="pName"></h1>
+    <p class="price" id="pPrice"></p>
+  </div>
+  <div class="sizebox">
+    <p class="kicker" data-i18n="fit_h"></p>
+    <div class="sizes2" id="sizes"></div>
+    <p class="muted"><span data-i18n="sum_size"></span>: <b id="sSize">—</b> · <span data-i18n="sum_ready"></span>: <b id="sReady">—</b></p>
+    <details class="meas" id="meas">
+      <summary data-i18n="meas_h"></summary>
+      <div class="seg" id="units" style="margin:12px 0 6px"></div>
       <div id="sliders"></div>
-
-      <div class="summary">
-        <div><span data-i18n="sum_size"></span><b id="sSize">—</b></div>
-        <div><span data-i18n="sum_price"></span><b id="sPrice">—</b></div>
-        <div><span data-i18n="sum_ready"></span><b id="sReady">—</b></div>
-      </div>
-      <a class="btn" id="send" target="_blank" rel="noopener" data-i18n="send"></a>
-      <p class="note" data-i18n="note"></p>
-    </div>
+    </details>
   </div>
-</main>
+  <div class="orderbox">
+    <a class="btn big" id="send" target="_blank" rel="noopener" data-i18n="send"></a>
+    <p class="muted" data-i18n="note"></p>
+    <p class="muted" data-i18n="room_note"></p>
+  </div>
+</section>
 
 <script src="i18n.js"></script>
 <script src="product.js"></script>
